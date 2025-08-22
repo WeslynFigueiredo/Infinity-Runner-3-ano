@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial Avançado: Jogo de Infinity Runner com Godot</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chosen Palette: SENAI Corporate (Blue #003463, Orange #FF6600, Sky Blue) -->
-    <!-- Application Structure Plan: A tab-based single-page application. The tutorial's steps are divided into logical, interactive tabs (Project Setup, Input Config, Main Menu, Player, Obstacles, Collectibles, World, Game Logic, Game Over). This structure was chosen to guide the user through a more complex game creation flow, allowing them to focus on one feature at a time. Each tab presents instructions and corresponding code blocks, and the tabs are ordered to reflect a natural development process. -->
-    <!-- Visualization & Content Choices: Report Info: Advanced Tutorial Steps -> Goal: Guide -> Presentation: Styled HTML text (p, ul, li) and placeholder images -> Interaction: Tab navigation. | Report Info: GDScript Code -> Goal: Provide Code -> Presentation: Styled <pre><code> block -> Interaction: 'Copy to Clipboard' button. | This approach focuses on clear information architecture and direct interaction (navigation, copying) to facilitate the learning process, avoiding unnecessary visual libraries. Confirmed NO SVG/Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -94,17 +90,17 @@
         <nav id="tab-navigation" class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
             <button data-tab="1" class="tab-btn active px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">1. Projeto e Configs</button>
             <button data-tab="2" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">2. Configuração de Input</button>
-            <button data-tab="3" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">3. Menu Inicial</button>
-            <button data-tab="4" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">4. Jogador Animado</button>
-            <button data-tab="5" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">5. Obstáculos</button>
-            <button data-tab="6" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">6. Coletáveis</button>
-            <button data-tab="7" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">7. Cenário Parallax</button>
-            <button data-tab="8" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">8. Lógica do Jogo</button>
-            <button data-tab="9" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">9. Tela de Game Over</button>
+            <button data-tab="3" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">3. Singleton (Global)</button>
+            <button data-tab="4" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">4. Menu Inicial</button>
+            <button data-tab="5" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">5. Jogador Animado</button>
+            <button data-tab="6" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">6. Obstáculos</button>
+            <button data-tab="7" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">7. Coletáveis</button>
+            <button data-tab="8" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">8. Cenário Parallax</button>
+            <button data-tab="9" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">9. Lógica do Jogo</button>
+            <button data-tab="10" class="tab-btn px-4 py-2 rounded-md bg-white shadow-sm hover:bg-stone-200 transition-colors">10. Tela de Game Over</button>
         </nav>
 
         <main id="content-container" class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-            <!-- Passo 1: Configuração do Projeto -->
             <section id="tab-content-1" class="content-section active">
                 <div class="prose max-w-none">
                     <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 1: Configuração Inicial do Projeto</h2>
@@ -117,7 +113,7 @@
                                 <li>Em <strong>Tamanho</strong>, defina `Viewport Largura` para **1920** e `Viewport Altura` para **1080**.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo1.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo1.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                         </div>
                         <div class="flex items-center justify-center bg-stone-100 rounded-lg p-8">
@@ -127,7 +123,6 @@
                 </div>
             </section>
             
-            <!-- Passo 2: Configuração de Input -->
             <section id="tab-content-2" class="content-section">
                 <div class="prose max-w-none">
                     <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 2: Configuração das Ações de Input</h2>
@@ -142,7 +137,7 @@
                                 <li>Adicione todas as ações que você irá utilizar no seu jogo, conforme o GDD.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo2.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo2.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                         </div>
                         <div class="flex items-center justify-center bg-stone-100 rounded-lg p-8">
@@ -151,11 +146,44 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Passo 3: A Cena do Menu Inicial -->
+            
             <section id="tab-content-3" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 3: A Cena do Menu Inicial</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 3: Configuração do Singleton (Autoload)</h2>
+                    <p class="mb-6">Para que a pontuação persista entre as cenas, vamos configurar um Singleton. Ele é um script que pode ser acessado de qualquer lugar do jogo.</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-medium mb-3">a. Criar o Script Global</h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Crie um novo script GDScript na raiz do seu projeto e chame-o de <strong>`Global.gd`</strong>.</li>
+                                <li>Este script conterá a nossa variável de pontuação.</li>
+                            </ul>
+                            <h3 class="text-xl font-medium mt-6 mb-3">b. Adicionar como Autoload</h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Vá em <strong>Projeto > Configurações do Projeto > Autoload</strong>.</li>
+                                <li>No campo `Caminho`, selecione o script `Global.gd` e clique em <strong>Adicionar</strong>.</li>
+                                <li>Isso permitirá que você acesse a pontuação de qualquer cena usando `Global.score`.</li>
+                            </ul>
+                            <div class="image-container">
+                                <video src="passo_global.mp4" controls class="rounded-lg shadow-md my-4">
+                            </div>
+                        </div>
+                        <div class="code-block">
+                            <p class="text-sm font-semibold mb-2 text-stone-600">Script do Singleton (`Global.gd`)</p>
+                            <button class="copy-btn">Copiar</button>
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># Global.gd
+extends Node
+
+var score = 0
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tab-content-4" class="content-section">
+                <div class="prose max-w-none">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 4: A Cena do Menu Inicial</h2>
                     <p class="mb-6">Vamos criar a primeira cena que os jogadores verão. O menu terá um fundo, o título do jogo, e botões de imagem personalizados. Esta cena servirá como ponto de entrada para o jogo.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
@@ -164,18 +192,18 @@
                                 <li>Crie uma nova cena 2D e adicione um nó `Control` como raiz. Salve como <strong>`main_menu.tscn`</strong>.</li>
                                 <li>Adicione um nó `TextureRect` como filho do `Control` para o fundo, e coloque a sua imagem de fundo na propriedade **Textura**.</li>
                                 <li>Adicione um nó `VBoxContainer` para os botões.</li>
-                                <li>Crie <strong>`TextureButton`</strong>s (`btn iniciar`, `btn opções`, `btn sair`) como filhos do `VBoxContainer`, e coloque suas imagens nas propriedades **Normal** e **Pressed**.</li>
+                                <li>Crie <strong>`TextureButton`</strong>s (`btn_iniciar`, `btn_opcoes`, `btn_sair`) como filhos do `VBoxContainer`, e coloque suas imagens nas propriedades **Normal** e **Pressed**.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo3.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo3.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                             <h3 class="text-xl font-medium mt-6 mb-3">b. Adicionar o Script do Menu</h3>
                             <p>Anexe um script ao nó `Control` do menu. Ele irá gerenciar o evento de clique do botão para iniciar o jogo.</p>
                              <ul class="list-disc list-inside space-y-2 mt-4">
-                                <li>Conecte o sinal `pressed()` do `btn iniciar` à função `_on_start_button_pressed()` no script.</li>
+                                <li>Conecte o sinal `pressed()` dos botões à função correspondente no script.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo3-1.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo3-1.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                         </div>
                         <div class="code-block">
@@ -200,10 +228,9 @@ func _on_btn_sair_pressed():
                 </div>
             </section>
 
-            <!-- Passo 4: O Jogador Animado -->
-            <section id="tab-content-4" class="content-section">
+            <section id="tab-content-5" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 4: O Jogador Animado</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 5: O Jogador Animado</h2>
                     <p class="mb-6">Em vez de um quadrado estático, vamos usar um personagem animado! O `AnimatedSprite2D` permite que troquemos a animação do nosso jogador entre "correr" e "pular", tornando a experiência visual muito mais dinâmica. Você precisará de um SpriteSheet com as animações.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
@@ -212,23 +239,25 @@ func _on_btn_sair_pressed():
                                 <li>Crie uma nova cena 2D e adicione um nó `CharacterBody2D` como raiz. Salve como <strong>`player.tscn`</strong>.</li>
                                 <li>Adicione um `CollisionShape2D` para a colisão.</li>
                                 <li>Adicione um nó filho <strong>`AnimatedSprite2D`</strong>. No Inspetor, crie um "Novo SpriteFrames" e configure as animações de "run" e "jump" com seu SpriteSheet.</li>
+                                <li>Para a colisão com coletáveis e obstáculos, adicione um nó filho <strong>`Area2D`</strong> ao `CharacterBody2D`, e dentro dele um `CollisionShape2D`. Dê o nome de `CollisionArea` a este nó.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo4.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo4.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                             <h3 class="text-xl font-medium mt-6 mb-3">b. O Script do Jogador</h3>
                             <p>Anexe o script abaixo ao nó `CharacterBody2D`. Ele irá gerenciar a física (gravidade e pulo) e atualizar as animações do `AnimatedSprite2D` com base no estado do jogador.</p>
                              <ul class="list-disc list-inside space-y-2 mt-4">
-                                <li>Lembre-se de configurar a ação `ui_accept` no **Mapa de Ações** do projeto.</li>
+                                <li>Lembre-se de configurar a ação `jump` no **Mapa de Ações** do projeto.</li>
                             </ul>
                             <div class="image-container">
-                                <video src="passo4-1.mp4" controls class="rounded-lg shadow-md my-4">
+                                <video src="passo4-1.mp4" controls class="rounded-lg shadow-md my-4"></video>
                             </div>
                         </div>
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script do Jogador (`Player.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends CharacterBody2D
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># Player.gd
+extends CharacterBody2D
 
 @export var speed = 300.0
 @export var jump_velocity = -450.0
@@ -237,31 +266,30 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var animated_sprite: AnimatedSprite2D
 
 func _ready():
-	animated_sprite = get_node("AnimatedSprite2D")
-
+    animated_sprite = get_node("AnimatedSprite2D")
+    
 func _physics_process(delta):
-	# Aplicar gravidade
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		animated_sprite.play("jump")
-	else:
-		animated_sprite.play("run")
-	
-	# Detectar salto
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = jump_velocity
-	
-	move_and_slide()
+    # Aplica gravidade e gerencia animações de corrida e pulo
+    if not is_on_floor():
+        velocity.y += gravity * delta
+        animated_sprite.play("jump")
+    else:
+        animated_sprite.play("run")
+    
+    # Detecta pulo
+    if Input.is_action_just_pressed("jump") and is_on_floor():
+        velocity.y = jump_velocity
+    
+    move_and_slide()
 </code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Passo 5: Obstáculos -->
-            <section id="tab-content-5" class="content-section">
+            <section id="tab-content-6" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 5: Criando os Obstáculos</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 6: Criando os Obstáculos</h2>
                     <p class="mb-6">Para desafiar o jogador, vamos criar obstáculos. Cada obstáculo será uma cena separada com seu próprio comportamento: ele irá se mover e, se colidir com o jogador, causará um "Game Over".</p>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
@@ -272,7 +300,7 @@ func _physics_process(delta):
                                 <li>No Inspetor de `Area2D`, adicione-o ao grupo <strong>`obstacles`</strong>.</li>
                             </ul>
                              <div class="image-container">
-                                <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Configura%C3%A7%C3%A3o+de+Grupos" alt="Imagem do inspetor de nós do Godot, mostrando como adicionar o nó Area2D ao grupo 'obstacles' na aba 'Nó'." class="rounded-lg shadow-md my-4">
+                                 <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Configura%C3%A7%C3%A3o+de+Grupos" alt="Imagem do inspetor de nós do Godot, mostrando como adicionar o nó Area2D ao grupo 'obstacles' na aba 'Nó'." class="rounded-lg shadow-md my-4">
                              </div>
                             <h3 class="text-xl font-medium mt-6 mb-3">b. Script do Obstáculo</h3>
                             <p>Anexe este script ao nó `Area2D` do obstáculo. Ele cuidará da movimentação e remoção do obstáculo quando ele sair da tela.</p>
@@ -280,27 +308,27 @@ func _physics_process(delta):
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script do Obstáculo (`Obstacle.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends Area2D
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># Obstacle.gd
+extends Area2D
 
 @export var speed = -300.0
 
 func _physics_process(delta):
-	# Move o item para a esquerda
-	position.x += speed * delta
+    # Move o item para a esquerda
+    position.x += speed * delta
 
-	# Remove o item quando sai da tela
-	if position.x < -200:
-		queue_free()
+    # Remove o item quando sai da tela
+    if position.x < -200:
+        queue_free()
 </code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Passo 6: Coletáveis -->
-            <section id="tab-content-6" class="content-section">
+            <section id="tab-content-7" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 6: Adicionando Coletáveis</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 7: Adicionando Coletáveis</h2>
                     <p class="mb-6">Para recompensar o jogador, vamos criar coletáveis. Eles também serão cenas separadas que se movem, mas em vez de causar Game Over, darão pontos ao jogador.</p>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
@@ -319,27 +347,27 @@ func _physics_process(delta):
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script do Coletável (`Collectible.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends Area2D
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># Collectible.gd
+extends Area2D
 
 @export var speed = -300.0
 
 func _physics_process(delta):
-	# Move o item para a esquerda
-	position.x += speed * delta
+    # Move o item para a esquerda
+    position.x += speed * delta
 
-	# Remove o item quando sai da tela
-	if position.x < -200:
-		queue_free()
+    # Remove o item quando sai da tela
+    if position.x < -200:
+        queue_free()
 </code></pre>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- Passo 7: O Cenário Infinito (Parallax) -->
-            <section id="tab-content-7" class="content-section">
+            <section id="tab-content-8" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 7: O Cenário Infinito (Parallax)</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 8: O Cenário Infinito (Parallax)</h2>
                     <p class="mb-6">Um cenário que se move em diferentes velocidades cria a ilusão de profundidade e movimento. Isso é chamado de **Parallax**. Usaremos o nó `ParallaxBackground` para criar essa sensação, com camadas para o chão e o céu, por exemplo.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
@@ -347,8 +375,13 @@ func _physics_process(delta):
                             <ul class="list-disc list-inside space-y-2">
                                 <li>Crie uma nova cena 2D para o cenário, adicione um nó **`ParallaxBackground`** como raiz. Salve-a como `world.tscn`.</li>
                                 <li>Adicione um `ParallaxLayer` como filho do `ParallaxBackground` para cada camada do seu cenário (céu, montanhas, chão).</li>
-                                <li>Dentro de cada `ParallaxLayer`, adicione um `Sprite2D` com a imagem da sua camada.</li>
-                                <li>No Inspetor de cada `ParallaxLayer`, ajuste a propriedade **`Motion/Mirroring`** para um valor maior que a largura da imagem e **`Motion/Scale`** para um valor menor que 1 (ex: `Vector2(0.5, 1.0)`) para criar o efeito parallax.</li>
+                                <li>Dentro de cada `ParallaxLayer`, adicione um `Sprite2D` com a imagem da sua camada (com tamanho 1920x1080).</li>
+                                <li>No Inspetor de cada `ParallaxLayer`, ajuste as propriedades para criar o efeito:
+                                    <ul class="list-disc list-inside ml-6 mt-2">
+                                        <li><strong>`Motion/Mirroring`</strong>: `Vector2(1920, 0)`. Isso fará com que a imagem se repita horizontalmente após 1920 pixels, criando a sensação de um loop infinito.</li>
+                                        <li><strong>`Motion/Scale`</strong>: Use um valor menor que 1 no eixo X, como `Vector2(0.5, 1.0)`, para criar o efeito de profundidade (o céu se move mais devagar que o chão).</li>
+                                    </ul>
+                                </li>
                             </ul>
                             <div class="image-container">
                                 <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Configura%C3%A7%C3%A3o+do+Parallax" alt="Imagem do editor do Godot, mostrando o nó ParallaxBackground com suas camadas e as propriedades Mirroring e Scale ajustadas no Inspetor." class="rounded-lg shadow-md my-4">
@@ -356,126 +389,142 @@ func _physics_process(delta):
                             <h3 class="text-xl font-medium mt-6 mb-3">b. Mover o Cenário</h3>
                             <p>Anexe o script abaixo ao nó `ParallaxBackground`. Ele fará com que o cenário se mova continuamente para a esquerda.</p>
                              <ul class="list-disc list-inside space-y-2 mt-4">
-                                <li>Lembre-se de instanciar a cena `player.tscn` na cena `main_game.tscn`.</li>
+                                <li>Lembre-se de instanciar a cena `world.tscn` na cena `main_game.tscn`.</li>
                             </ul>
                         </div>
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script do Cenário (`ParallaxBackground.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends ParallaxBackground
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># ParallaxBackground.gd
+extends ParallaxBackground
 
 @export var speed = 100.0
 
 func _process(delta):
-	scroll_offset.x -= speed * delta
+    scroll_offset.x -= speed * delta
 </code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Passo 8: Lógica do Jogo Principal -->
-            <section id="tab-content-8" class="content-section">
+            <section id="tab-content-9" class="content-section">
                  <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 8: A Lógica do Jogo Principal</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 9: A Lógica do Jogo Principal</h2>
                     <p class="mb-6">Aqui está o coração do jogo! No script da cena principal (`main_game.tscn`), gerenciaremos a pontuação, spawn de obstáculos e coletáveis, e o game over. Conectaremos os sinais de colisão para que a lógica do jogo seja ativada.</p>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
                             <h3 class="text-xl font-medium mb-3">a. Ligar a Cena Principal</h3>
                              <ul class="list-disc list-inside space-y-2">
                                 <li>Anexe o script abaixo ao nó raiz de `main_game.tscn`.</li>
-                                <li>Instancie a cena `player.tscn` na cena principal.</li>
+                                <li>Instancie a cena `player.tscn` e `world.tscn` na cena principal.</li>
                                 <li>Adicione nós `Timer` para os obstáculos (`ObstacleTimer`) e para os coletáveis (`CollectibleTimer`). Conecte os sinais `timeout()` ao script principal.</li>
                                 <li>Defina as variáveis `obstacle_scene` e `collectible_scene` no Inspetor.</li>
+                                <li>Adicione um nó `CanvasLayer` e dentro dele, um `Label` chamado `ScoreLabel` para exibir a pontuação.</li>
                             </ul>
                             <div class="image-container">
                                 <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Cena+Principal+com+os+N%C3%B3s" alt="Imagem da árvore de nós da cena principal, mostrando os nós Timer, o Player instanciado e o CanvasLayer com o ScoreLabel." class="rounded-lg shadow-md my-4">
                             </div>
                              <h3 class="text-xl font-medium mt-6 mb-3">b. Conectar Sinais</h3>
                              <ul class="list-disc list-inside space-y-2">
-                                <li>Na cena `player.tscn`, adicione um nó `Area2D`.</li>
-                                <li>No `Area2D` do jogador, conecte os sinais `area_entered` e `body_entered` ao script principal da cena `main_game`.</li>
+                                <li>Na cena `main_game.tscn`, selecione o nó `Player/CollisionArea`.</li>
+                                <li>No Inspetor, na aba `Nó`, conecte o sinal `area_entered` à função `_on_player_collision_area_entered()` no script principal.</li>
                             </ul>
                         </div>
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script Principal (`MainGame.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends Node2D
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># MainGame.gd
+extends Node2D
 
 @export var obstacle_scene: PackedScene
 @export var collectible_scene: PackedScene
-var score = 0
-var game_over = false
 
 func _ready():
-	$CanvasLayer/ScoreLabel.text = "Score: " + str(score)
+    # Inicializa a pontuação no Singleton Global
+    Global.score = 0
+    $CanvasLayer/ScoreLabel.text = "Score: " + str(Global.score)
+    
+    # Conecta o sinal do Area2D do jogador para detectar colisões
+    $Player/CollisionArea.connect("area_entered", Callable(self, "_on_player_collision_area_entered"))
+    
+    # Conectando os sinais de timeout dos timers
+    $ObstacleTimer.connect("timeout", Callable(self, "_on_obstacle_timer_timeout"))
+    $CollectibleTimer.connect("timeout", Callable(self, "_on_collectible_timer_timeout"))
+
 
 func _process(delta):
-	if not game_over:
-		score += 1
-		$CanvasLayer/ScoreLabel.text = "Score: " + str(score)
+    # Aumenta a pontuação continuamente
+    Global.score += 1
+    $CanvasLayer/ScoreLabel.text = "Score: " + str(Global.score)
 
 func _on_obstacle_timer_timeout():
-	var new_obstacle = obstacle_scene.instantiate()
-	add_child(new_obstacle)
-	new_obstacle.global_position = Vector2(1280, 500) # Posição inicial fora da tela
+    var new_obstacle = obstacle_scene.instantiate()
+    add_child(new_obstacle)
+    # Posição de spawn fora da tela, um pouco aleatória em Y
+    new_obstacle.global_position = Vector2(1280, randi_range(500, 700))
 
 func _on_collectible_timer_timeout():
-	var new_collectible = collectible_scene.instantiate()
-	add_child(new_collectible)
-	new_collectible.global_position = Vector2(1280, randi_range(300, 600)) # Posição aleatória
+    var new_collectible = collectible_scene.instantiate()
+    add_child(new_collectible)
+    # Posição de spawn aleatória
+    new_collectible.global_position = Vector2(1280, randi_range(300, 600))
 
-func on_player_area_entered(area):
-	if area.is_in_group("collectibles"):
-		score += 100
-		area.queue_free() # Remove o coletável
-	if area.is_in_group("obstacles"):
-		end_game()
+func _on_player_collision_area_entered(area: Area2D):
+    # Checa se a área que colidiu é um coletável
+    if area.is_in_group("collectibles"):
+        Global.score += 100
+        area.queue_free() # Remove o coletável
+    # Checa se a área que colidiu é um obstáculo
+    if area.is_in_group("obstacles"):
+        end_game()
 
 func end_game():
-	game_over = true
-	get_tree().change_scene_to_file("res://game_over.tscn")
+    get_tree().change_scene_to_file("res://game_over.tscn")
 </code></pre>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Passo 9: Tela de Game Over -->
-            <section id="tab-content-9" class="content-section">
+            <section id="tab-content-10" class="content-section">
                 <div class="prose max-w-none">
-                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 9: A Tela de Game Over</h2>
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-4">Passo 10: A Tela de Game Over</h2>
                     <p class="mb-6">Para completar, precisamos de uma tela de "Game Over" que mostre a pontuação final e dê ao jogador a opção de reiniciar o jogo ou voltar ao menu principal. Esta será uma cena simples, mas crucial para a experiência do usuário.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <h3 class="text-xl font-medium mb-3">a. Criar a Cena do Game Over</h3>
                             <ul class="list-disc list-inside space-y-2">
                                 <li>Crie uma nova cena 2D com um nó `Control` como raiz e salve como <strong>`game_over.tscn`</strong>.</li>
-                                <li>Adicione um `Label` para exibir "Game Over" e outro para a pontuação final.</li>
-                                <li>Adicione um `Button` para "Reiniciar" o jogo.</li>
+                                <li>Adicione um `Label` para exibir "Game Over" e outro para a pontuação final. Dê o nome de `ScoreLabel` ao nó de pontuação.</li>
+                                <li>Adicione um `VBoxContainer` para os botões. Dentro dele, adicione um `Button` para "Reiniciar" (nome: `btn_reiniciar`) e outro para "Menu" (nome: `btn_menu`).</li>
                             </ul>
                             <div class="image-container">
                                 <img src="https://placehold.co/600x400/BFDBFE/1E40AF?text=Cena+de+Game+Over" alt="Imagem da cena de Game Over, mostrando os nós Control, Label e Button organizados para exibir a pontuação final e a opção de reiniciar." class="rounded-lg shadow-md my-4">
                             </div>
                             <h3 class="text-xl font-medium mt-6 mb-3">b. O Script do Game Over</h3>
-                            <p>Anexe um script ao nó `Control` do game over. Ele irá mostrar a pontuação final e lidar com a navegação de volta para a cena principal do jogo quando o botão for pressionado.</p>
+                            <p>Anexe um script ao nó `Control` do game over. Ele irá mostrar a pontuação final e lidar com a navegação de volta para a cena principal do jogo ou para o menu.</p>
                              <ul class="list-disc list-inside space-y-2 mt-4">
-                                <li>Conecte o sinal `pressed()` do `Button` à função `_on_restart_button_pressed()`.</li>
+                                <li>Conecte o sinal `pressed()` dos botões `btn_reiniciar` e `btn_menu` ao script.</li>
                             </ul>
                         </div>
                         <div class="code-block">
                             <p class="text-sm font-semibold mb-2 text-stone-600">Script da Tela de Game Over (`GameOver.gd`)</p>
                             <button class="copy-btn">Copiar</button>
-                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript">extends Control
+                            <pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto"><code class="language-gdscript"># GameOver.gd
+extends Control
 
 func _ready():
-	# Pegar a pontuação da cena anterior (ex: usando um Singleton)
-	# Por enquanto, usaremos um valor fixo.
-	$ScoreLabel.text = "Sua Pontuação: " + str(Global.final_score) # Exemplo com Singleton
-
-func _on_restart_button_pressed():
-	# Volta para a cena principal do jogo
-	get_tree().change_scene_to_file("res://main_game.tscn")
+    # Pega a pontuação final do Singleton Global
+    $ScoreLabel.text = "Sua Pontuação: " + str(Global.score)
+    
+func _on_btn_reiniciar_pressed():
+    # Volta para a cena principal do jogo
+    get_tree().change_scene_to_file("res://main_game.tscn")
+    
+func _on_btn_menu_pressed():
+    # Volta para o menu inicial
+    get_tree().change_scene_to_file("res://main_menu.tscn")
 </code></pre>
                         </div>
                     </div>
@@ -499,23 +548,67 @@ func _on_restart_button_pressed():
             const zoomOverlay = document.getElementById('image-zoom-overlay');
             const zoomImage = document.getElementById('image-zoom-display');
             const images = document.querySelectorAll('.image-container img');
+            
+            // Adicionei um evento de clique para o overlay para fechar a imagem ampliada.
+            zoomOverlay.addEventListener('click', () => {
+                zoomOverlay.classList.remove('visible');
+            });
+            
+            // Reconfigurei a lógica das tabs para os 10 passos.
+            const totalSteps = 10;
+            let currentStep = 1;
+
+            function showStep(step) {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                const activeButton = document.querySelector(`[data-tab="${step}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const activeSection = document.getElementById(`tab-content-${step}`);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+                currentStep = step;
+            }
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const tab = button.dataset.tab;
-
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-
-                    contentSections.forEach(section => {
-                        if (section.id === `tab-content-${tab}`) {
-                            section.classList.add('active');
-                        } else {
-                            section.classList.remove('active');
-                        }
-                    });
+                    showStep(parseInt(button.dataset.tab));
                 });
             });
+
+            // Adicionei botões de navegação
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Próximo Passo >>';
+            nextButton.className = 'px-4 py-2 mt-4 rounded-md bg-[#003463] text-white shadow-sm hover:bg-[#014c8d] transition-colors';
+            
+            const prevButton = document.createElement('button');
+            prevButton.textContent = '<< Passo Anterior';
+            prevButton.className = 'px-4 py-2 mt-4 rounded-md bg-stone-200 text-stone-800 shadow-sm hover:bg-stone-300 transition-colors mr-2';
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'flex justify-between mt-6';
+            buttonContainer.appendChild(prevButton);
+            buttonContainer.appendChild(nextButton);
+            document.querySelector('main').appendChild(buttonContainer);
+
+            nextButton.addEventListener('click', () => {
+                if (currentStep < totalSteps) {
+                    showStep(currentStep + 1);
+                }
+            });
+
+            prevButton.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    showStep(currentStep - 1);
+                }
+            });
+            
+            showStep(1);
 
             copyButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -542,9 +635,6 @@ func _on_restart_button_pressed():
                 });
             });
 
-            zoomOverlay.addEventListener('click', () => {
-                zoomOverlay.classList.remove('visible');
-            });
         });
     </script>
 
